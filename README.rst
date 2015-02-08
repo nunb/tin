@@ -1,4 +1,4 @@
-Tinnman - Machine Learning for Rust
+Tin - Machine Learning for Rust
 ===================================
 
 Supervised Learning
