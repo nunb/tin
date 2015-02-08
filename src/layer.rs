@@ -8,12 +8,12 @@ fn layer_test() {
 
 pub struct Layer {
     inputs : usize,
-    outputs: usize,
-    neurons: Vec<Neuron>,
+    outputs : usize,
+    neurons : Vec<Neuron>,
 }
 
 impl Layer {
-    pub fn new(inputs : usize, outputs: usize) -> Layer {
+    pub fn new(inputs : usize, outputs : usize) -> Layer {
         return Layer{
             inputs: inputs,
             outputs: outputs,
