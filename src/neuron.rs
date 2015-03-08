@@ -3,7 +3,7 @@ use std::iter;
 
 #[test]
 fn neuron_test() {
-    let mut n = Neuron::new(3);
+    let n = Neuron::new(3);
     let i = vec![2.0,2.0,2.0];
     let output = n.integrate(&i);
     assert!(output < 1.0);

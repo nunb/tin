@@ -3,7 +3,7 @@ use layer::Layer;
 #[test]
 fn network_test() {
     let layers : Vec<usize> = vec![1,2,3];
-    let mut l = Network::new(&layers);
+    let l = Network::new(&layers, 2);
 }
 
 pub struct Network {
@@ -11,9 +11,9 @@ pub struct Network {
 }
 
 impl Network {
-    pub fn new(input_sizes : &Vec<usize>) -> Network {
+    pub fn new(input_sizes : &Vec<usize>, outputs : usize) -> Network {
         let mut output_sizes : Vec<usize> = input_sizes.iter().cloned().skip(1).collect();
-        output_sizes.push(0);
+        output_sizes.push(outputs);
         let inputs_outputs : Vec<(usize, usize)> = input_sizes.iter().cloned().zip(output_sizes.iter().cloned()).collect();
         println!("{:?}", inputs_outputs);
         return Network {
