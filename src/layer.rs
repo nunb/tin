@@ -4,8 +4,8 @@ use neuron::Neuron;
 #[test]
 fn layer_test() {
     let mut l = Layer::new(4, 3);
-    let inputs = vec!(2,3,4);
-    l.integrate(&inputs)
+    let inputs = vec![2.0f32, 3.0, 4.0];
+    l.integrate(&inputs);
 }
 
 pub struct Layer {
