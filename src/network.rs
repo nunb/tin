@@ -12,10 +12,19 @@ pub struct Network {
 
 impl Network {
     pub fn new(input_sizes : &Vec<usize>, outputs : usize) -> Network {
-        let output_sizes : Vec<usize> = input_sizes.iter().skip(1).chain(vec!(outputs).iter()).cloned().collect();
-        let inputs_outputs : Vec<(usize, usize)> = input_sizes.iter().cloned().zip(output_sizes.iter().cloned()).collect();
+        let output_sizes : Vec<usize> = input_sizes.iter()
+            .skip(1)
+            .chain(vec!(outputs).iter())
+            .cloned()
+            .collect();
+        let inputs_outputs : Vec<(usize, usize)> = input_sizes.iter()
+            .cloned()
+            .zip(output_sizes.iter().cloned())
+            .collect();
         return Network {
-            layers: inputs_outputs.iter().map(|&(inputs, outputs)| Layer::new(inputs, outputs)).collect()
+            layers: inputs_outputs.iter()
+                .map(|&(inputs, outputs)| Layer::new(inputs, outputs))
+                .collect()
         }
     }
 }
