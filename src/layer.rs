@@ -4,6 +4,8 @@ use neuron::Neuron;
 #[test]
 fn layer_test() {
     let mut l = Layer::new(4, 3);
+    let inputs = vec!(2,3,4);
+    l.integrate(&inputs)
 }
 
 pub struct Layer {
@@ -11,6 +13,9 @@ pub struct Layer {
     outputs : usize,
     neurons : Vec<Neuron>,
 }
+
+#[derive(Debug)]
+pub enum IntegrateError { InvalidInputLength }
 
 impl Layer {
     pub fn new(inputs : usize, outputs : usize) -> Layer {
@@ -21,16 +26,12 @@ impl Layer {
         }
     }
 
-    pub fn integrate(&mut self, input : Vec<f32>) -> Option<Vec<f32>> {
+    pub fn integrate(&mut self, input : &Vec<f32>) -> Result<Vec<f32>, IntegrateError> {
         if input.len() != self.inputs {
-            println!("invalid input length");
-            return None 
+            return Err(IntegrateError::InvalidInputLength);
         }
-        let mut output = Vec::with_capacity(self.outputs);
-        for n in &self.neurons {
-            output.push(n.integrate(&input))
-        }
-        return Some(output)
+        let output = self.neurons.iter().map(|n| n.integrate(&input)).collect();
+        return Ok(output)
     }
 
 }
